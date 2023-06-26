@@ -20,7 +20,6 @@ def read_root():
 @app.post("/")
 def analyse_email(email: Email):
 
-    openai.api_key = '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'
     content = email.content
     product_catalogue = """
                         [{"product": "t-shirt", "price": "$23"}, {"product": "pants", "price": "$15"}, {"product": "shoes", "price": "$39"}]
