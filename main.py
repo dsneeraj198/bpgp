@@ -26,10 +26,16 @@ def analyse_email(email: Email):
                         """
     query =  f"""This is the product catalogue: {product_catalogue} \
               Please calculate the deal size:{content} \
+               "Try to give a priority score to this email based on how likely this email will leads to a good \
+              business opportunity, from 0 to 10; 10 most important" \
               Also, extract order details information, including which product clients want to buy, how many they want to buy \
+              What is the recommendation for the Sales Team to move this forward? \
+              Also, Try to identify the amount of products the client wants to purchase, if any \
+              Also, Write an acknowledgement to the client in persuading tone in not more than 20 words \
               Format your response as a JSON object with \
-              "DealSize", "ProductName", "CompanyName" as the key. \
-              If the information isn't present, use "unknown" as the value. \
+              "DealSize", "ProductName", "CompanyName", "Priority", "Recommendation", "Amount", "Acknowledgement" as the key. \
+              If information isn't present, use "unknown" as the value. \
+              If "ProductName" is not present in {product_catalogue} then us unknown in "DealSize"
               Make your response as short as possible."""
 
     messages = [{"role": "user", "content": query}]
@@ -45,10 +51,17 @@ def analyse_email(email: Email):
     deal_size = eval(arguments).get("DealSize")
     product_name = eval(arguments).get("ProductName")
     company_name = eval(arguments).get("CompanyName")
+    priority = eval(arguments).get("Priority")
+    recommendation = eval(arguments).get("Recommendation")
+    amount = eval(arguments).get("Amount")
+    reply = eval(arguments).get("Acknowledgement")
 
     return {
           "dealsize": deal_size,
+          "company": company_name,
           "product": product_name,
-          "company": company_name
+          "recommendation":recommendation,
+          "priority":priority,
+          "amount":amount,
+          "reply":reply
       }
-
