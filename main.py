@@ -22,7 +22,7 @@ def analyse_email(email: Email):
 
     content = email.content
     product_catalogue = """
-                        [{"product": "t-shirt", "price": "$23"}, {"product": "pants", "price": "$15"}, {"product": "shoes", "price": "$39"}]
+                        [{"product": "t-shirt", "price": "$23"}, {"product": "trousers", "price": "$15"}, {"product": "shoes", "price": "$39"}]
                         """
     query =  f"""This is the product catalogue: {product_catalogue} \
               Please calculate the deal size:{content} \
