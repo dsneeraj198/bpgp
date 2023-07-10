@@ -32,8 +32,9 @@ def analyse_email(email: Email):
               What is the recommendation for the Sales Team to move this forward? \
               Also, Try to identify the amount of products the client wants to purchase, if any \
               Also, Write an acknowledgement to the client in persuading tone in not more than 20 words \
+              Also, provide  the summary in not more than 30 words\
               Format your response as a JSON object with \
-              "DealSize", "ProductName", "CompanyName", "Priority", "Recommendation", "Amount", "Acknowledgement" as the key. \
+              "DealSize", "ProductName", "CompanyName", "Priority", "Recommendation", "Amount", "Acknowledgement", "Summary" as the key. \
               If information isn't present, use "unknown" as the value. \
               If "ProductName" is not present in {product_catalogue} then us unknown in "DealSize"
               Make your response as short as possible."""
@@ -55,6 +56,7 @@ def analyse_email(email: Email):
     recommendation = eval(arguments).get("Recommendation")
     amount = eval(arguments).get("Amount")
     reply = eval(arguments).get("Acknowledgement")
+    summary = eval(arguments).get("Summary")
 
     return {
           "dealsize": deal_size,
@@ -63,5 +65,7 @@ def analyse_email(email: Email):
           "recommendation":recommendation,
           "priority":priority,
           "amount":amount,
-          "reply":reply
+          "reply":reply,
+          "summary":summary
       }
+
